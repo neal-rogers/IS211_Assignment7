@@ -4,14 +4,23 @@
 """
 
 
-import
+import random
 
 
-class Die:
+class Die(object):
     """
     This is a constructor for the Die class.
     """
+
+    random.seed(0)
+
     def __init__(self):
+        self.rolled = 0
+
+    def roll(self):
+        self.rolled = random.randint(1, 7)
+        return self.rolled
+
 
 class Player:
     """
