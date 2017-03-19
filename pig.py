@@ -4,71 +4,29 @@
 """
 
 
-import csv
-import argparse
-import urllib2
+import
 
 
-class Queue:
+class Die:
     """
-    This is a constructor for the Queue class.
+    This is a constructor for the Die class.
     """
     def __init__(self):
-        self.items = []
 
-    def is_empty(self):
-        return self.items == []
-
-    def enqueue(self, item):
-        self.items.insert(0, item)
-
-    def dequeue(self):
-        return self.items.pop()
-
-    def size(self):
-        return len(self.items)
-
-class Request:
+class Player:
     """
-    This is a constructor for the Request class.
-    """
-    def __init__(self, time, req_time):
-        self.timestamp = time
-        self.req_time = req_time
-
-    def get_stamp(self):
-        return self.timestamp
-
-    def wait_time(self, current_time):
-        return current_time - self.timestamp
-
-class Server:
-    """
-    This is a constructor for the Server class.
+    This is a constructor for the Player class.
     """
     def __init__(self):
-        self.current_task = None
-        self.time_remaining = 0
 
-    def tick(self):
-        if self.current_task != None:
-            self.time_remaining = self.time_remaining - 1
-            if self.time_remaining <= 0:
-                self.current_task = None
-
-    def busy(self):
-        if self.current_task != None:
-            return True
-        else:
-            return False
-
-    def start_next(self, new_task):
-        self.current_task = new_task
-        self.time_remaining = new_task.process_time()
+class Game:
+    """
+    This is a constructor for the GAme class.
+    """
+    def __init__(self):
 
 
-# This function needs to accept the input_file?
-def simulateOneServer(num_seconds, req_time):
+def doSomething():
     """
     Args:
         num_seconds (int): Value for actual time of simulation.
@@ -78,26 +36,6 @@ def simulateOneServer(num_seconds, req_time):
     Example:
         >> simulateOneServer(11, 2)
     """
-    lab_printer = Server()
-    print_queue = Queue()
-    waiting_times = []
-    request = Request(num_seconds, req_time)
-    print_queue.enqueue(request)
-
-    for current_second in range(num_seconds):
-
-        if (not lab_printer.busy()) and (not print_queue.is_empty()):
-            next_task = print_queue.dequeue()
-            waiting_times.append(next_task.wait_time(current_second))
-            lab_printer.start_next(next_task)
-
-        lab_printer.tick()
-
-        average_wait = sum(waiting_times) / len(waiting_times)
-        print("Average Wait %6.2f secs %3d tasks remaining." % (average_wait, print_queue.size()))
-
-#def simulateManyServers():
-    #I don't understand how to implement a round robin function.
 
 
 def main():
