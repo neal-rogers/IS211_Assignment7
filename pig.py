@@ -22,17 +22,27 @@ class Die(object):
         return self.rolled
 
 
-class Player:
+class Player(object):
     """
     This is a constructor for the Player class.
     """
     def __init__(self):
+        self.name = name
+        self.turn_status = 0
+        self.turn_score = 0
+        self.total_score = 0
 
-class Game:
+class Game(object):
     """
     This is a constructor for the GAme class.
     """
-    def __init__(self):
+    def __init__(self, p1, p2):
+        self.p1 = Player(p1)
+        self.p2 = Player(p2)
+        self.die = Die()
+        self.turn(self.p1)
+
+    def player_turn(self, player):
 
 
 def doSomething():
