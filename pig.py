@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""This program DOES SOME STUFF.
+"""This program runs a game of Pig.
 """
 
 
@@ -27,7 +27,7 @@ class Player(object):
     This is a constructor for the Player class.
     """
     def __init__(self):
-        self.name = name
+        self.name = ''
         self.turn_status = 0
         self.turn_score = 0
         self.total_score = 0
@@ -43,6 +43,15 @@ class Game(object):
         self.turn(self.p1)
 
     def player_turn(self, player):
+        while player.turn_status == 1 and player.total_score < 100:
+            roll = self.die.roll()
+            if roll == 1:
+                print '*' * 40
+                print 'You rolled a 1. Points are forfeit.'
+                print '*' * 40
+                self.turn_score = 0
+                print '{} your score is {}.'.format(player.name, player.total_score)
+                continue
 
 
 def doSomething():
@@ -55,3 +64,5 @@ def doSomething():
     Example:
         >> simulateOneServer(11, 2)
     """
+
+if __name__ == '__main__':
